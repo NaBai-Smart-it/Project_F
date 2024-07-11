@@ -34,6 +34,18 @@ table 50301 Request
             Clustered = true;
         }
     }
-    
-    
+
+    trigger OnDelete()
+    var
+        RequestRow: Record RequestRow;
+    begin
+        // Set the filter to find all rows related to this request
+        RequestRow.SetRange(RequestRow.RequestID, Rec."No.");
+
+        // Delete all related rows
+        if RequestRow.FindSet() then
+            repeat
+                RequestRow.Delete();
+            until RequestRow.Next() = 0;
+    end;   
 }

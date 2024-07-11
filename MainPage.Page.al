@@ -2,8 +2,9 @@ page 50303 MainPage
 {
     PageType = Card;
     ApplicationArea = All;
-    Caption = '';
-    
+    Caption = 'Main Page';
+    UsageCategory = Lists;
+
     layout
     {
         area(Content)
@@ -13,7 +14,7 @@ page 50303 MainPage
             }
         }
     }
-    
+
     actions
     {
         area(Navigation)
@@ -22,7 +23,7 @@ page 50303 MainPage
             {
                 Caption = 'Open Item List';
                 ApplicationArea = All;
-                
+
                 trigger OnAction()
                 begin
                     Page.RunModal(Page::ItemList);
@@ -33,7 +34,7 @@ page 50303 MainPage
             {
                 Caption = 'Open Request List';
                 ApplicationArea = All;
-                
+
                 trigger OnAction()
                 begin
                     Page.RunModal(Page::RequestList);
@@ -41,7 +42,7 @@ page 50303 MainPage
             }
         }
     }
-    
+
     var
         myInt: Integer;
 }
