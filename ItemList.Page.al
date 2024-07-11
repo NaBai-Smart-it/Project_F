@@ -5,6 +5,8 @@ page 50300 ItemList
     UsageCategory = Lists;
     SourceTable = MyItem;
     CardPageId = ItemCard;
+    Caption = 'Item List';
+    Editable = false;
 
     layout
     {

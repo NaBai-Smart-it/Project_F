@@ -3,6 +3,8 @@ page 50305 RequestRowCard
     PageType = Card;
     ApplicationArea = All;
     SourceTable = RequestRow;
+    Caption = 'Request Row Card';
+    UsageCategory = Documents;
     
     layout
     {
@@ -10,7 +12,7 @@ page 50305 RequestRowCard
         {
             group(RequestRowData)
             {
-                field("No.";Rec."No."){ ApplicationArea = All;}
+                field("No.";Rec."No."){ ApplicationArea = All; Editable = false;}
                 field(ItemID;Rec.ItemID){ ApplicationArea = All;}
                 field(UnitOfMeasurement;Rec.UnitOfMeasurement){ ApplicationArea = All;}
                 field(Quantity;Rec.Quantity){ ApplicationArea = All;}

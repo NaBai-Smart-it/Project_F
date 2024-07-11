@@ -3,6 +3,8 @@ page 50306 RequestRowList
     PageType = ListPart;
     ApplicationArea = All;
     SourceTable = RequestRow;
+    Caption = 'Request Row List';
+    UsageCategory = Lists;
 
     layout
     {
@@ -10,7 +12,7 @@ page 50306 RequestRowList
         {
             repeater(RequestRowData)
             {
-                field("No."; Rec."No.") { ApplicationArea = All; }
+                field("No."; Rec."No.") { ApplicationArea = All;  Editable = false;}
                 field(ItemID; Rec.ItemID){ ApplicationArea = All; }
                 field(UnitOfMeasurement; Rec.UnitOfMeasurement) { ApplicationArea = All; }
                 field(Quantity; Rec.Quantity) { ApplicationArea = All; }

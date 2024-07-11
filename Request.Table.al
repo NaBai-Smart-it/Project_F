@@ -3,6 +3,7 @@ table 50301 Request
     Caption = 'Request';
     DataClassification = SystemMetadata;
     
+    
     fields
     {
         field(1;"No."; Integer)

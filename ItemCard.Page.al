@@ -3,6 +3,8 @@ page 50301 ItemCard
     PageType = Card;
     ApplicationArea = All;
     SourceTable = MyItem;
+    UsageCategory = Lists;
+    Caption = 'Item Card';
     
     
     layout

@@ -6,6 +6,7 @@ page 50304 RequestList
     CardPageId = RequestCard;
     UsageCategory = Lists;
     Editable = false;
+    Caption = 'Request List';
     
 
     layout

@@ -3,7 +3,8 @@ page 50302 RequestCard
     PageType = Document;
     ApplicationArea = All;
     SourceTable = Request;
-    //UsageCategory = Documents;
+    UsageCategory = Documents;
+    Caption = 'Request Card';
 
     layout
     {
