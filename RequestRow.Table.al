@@ -5,7 +5,6 @@ table 50302 RequestRow
 
     fields
     {
-
         field(1; "No."; Integer)
         {
             Caption = 'Request Row ID';
@@ -18,6 +17,11 @@ table 50302 RequestRow
             Caption = 'Item ID';
             DataClassification = SystemMetadata;
             TableRelation = MyItem."No.";
+
+            trigger OnValidate()
+            begin
+                RecalculatePrice();
+            end;
         }
 
         field(3; UnitOfMeasurement; Enum UnitOfMeasurement)
@@ -32,17 +36,21 @@ table 50302 RequestRow
         {
             Caption = 'Quantity';
             DataClassification = CustomerContent;
+
+            trigger OnValidate()
+            begin
+                RecalculatePrice();
+            end;
         }
 
         field(5; Price; Decimal)
         {
-            Caption = 'Price Witout VAT';
-            FieldClass = FlowField;
-            CalcFormula = lookup(MyItem.Price where("No." = field(ItemID)));
+            Caption = 'Price Without VAT';
+            DataClassification = CustomerContent;
             Editable = false;
         }
 
-        field(6; Coment; Text[50])
+        field(6; Comment; Text[50])
         {
             Caption = 'Comment';
             DataClassification = CustomerContent;
@@ -64,22 +72,22 @@ table 50302 RequestRow
         }
     }
 
+    procedure RecalculatePrice()
+    var
+        MyItemRec: Record MyItem;
+    begin
+        if MyItemRec.Get(ItemID) then
+            Price := MyItemRec.Price * Quantity
+        else
+            Price := 0; 
+    end;
+
     trigger OnInsert()
     begin
-        "No." := GetNextLineNo(RequestID);
+        "No." := RequestRowMng.GetNextLineNo(RequestID);
     end;
 
-    procedure GetNextLineNo(RequestID: Integer): Integer
     var
-        RequestRow: Record RequestRow;
-        MaxLineNo: Integer;
-    begin
-        MaxLineNo := 0;
-        RequestRow.SetRange(RequestRow.RequestID, RequestID);
-        if RequestRow.FindLast then
-            MaxLineNo := RequestRow."No.";
-
-        exit(MaxLineNo + 1);
-    end;
+        RequestRowMng : Codeunit RequestRowManegement;
     
 }

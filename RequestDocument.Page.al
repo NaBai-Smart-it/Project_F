@@ -12,9 +12,9 @@ page 50302 RequestCard
         {
             group(General)
             {
-                field("No."; Rec."No.") { ApplicationArea = All; }
+                field("No."; Rec."No.") { ApplicationArea = All;  Editable = false;}
                 field(EmployeeName; Rec.EmployeeName) { ApplicationArea = All; }
-                field(Status; Rec.Status) { ApplicationArea = All; }
+                field(Status; Rec.Status) { ApplicationArea = All; Editable = false;}
             }
 
             part(SalesLines; RequestRowList)

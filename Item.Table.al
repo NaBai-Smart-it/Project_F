@@ -47,7 +47,7 @@ table 50300 MyItem
             DataClassification = SystemMetadata;
         }
 
-        field(7; Status; Text[50])
+        field(7; Status; Enum ItemStatus)
         {
             Caption = 'Status';
             DataClassification = SystemMetadata;

@@ -26,6 +26,7 @@ page 50304 RequestList
     {
         area(Processing)
         {
+            //Request confirmation, The quantity of a item/items asociated with a request in MyItem table is redused 
             action("Confirm Request")
             {
                 ApplicationArea = All;
@@ -33,7 +34,6 @@ page 50304 RequestList
                 var
                     RequestRow: Record RequestRow;
                     ItemRec: Record MyItem;
-                    ErrorMessage: Label 'Not enough inventory for item %1. Required: %2, Available: %3';
                 begin
                     RequestRow.SetRange(RequestRow.RequestID, Rec."No.");
                     if RequestRow.FindSet() then 
@@ -43,19 +43,22 @@ page 50304 RequestList
                             if ItemRec.Get(RequestRow.ItemID) then 
                             begin
                                 if ItemRec.Quantity < RequestRow.Quantity then
-                                    Error(ErrorMessage, ItemRec."No.", RequestRow.Quantity, ItemRec.Quantity);
+                                    Error('Not enough inventory for item %1. Required: %2, Available: %3', ItemRec."No.", RequestRow.Quantity, ItemRec.Quantity);
                             end;
                         until RequestRow.Next() = 0;
                     end;
 
-                    RequestRow.FindSet();
-                    repeat
-                        if ItemRec.Get(RequestRow.ItemID) then 
-                        begin
-                            ItemRec.Quantity := ItemRec.Quantity - RequestRow.Quantity;
-                            ItemRec.Modify();
-                        end;
-                    until RequestRow.Next() = 0;
+                    if RequestRow.FindSet() then
+                    begin
+                        repeat
+                            if ItemRec.Get(RequestRow.ItemID) then 
+                            begin
+                                ItemRec.Quantity := ItemRec.Quantity - RequestRow.Quantity;
+                                ItemRec.Modify();
+                            end;
+                        until RequestRow.Next() = 0;
+                    end;
+                        
 
                     Rec.Status := Rec.Status::Confirmed;
                     Update(true);
@@ -63,15 +66,16 @@ page 50304 RequestList
                     Message('Request %1 has been confirmed and inventory updated.', Rec."No.");
                 end;
             }
-
+            
+            //Request rejection, The quantity of a item/items asociated with a request in MyItem table is NOT redused 
             action("Decline Request")
             {
+                Caption = 'Decline The Request';
                 ApplicationArea = All;
                 trigger OnAction()
                 var
                     RequestRow: Record RequestRow;
                     ItemRec: Record MyItem;
-                    ErrorMessage: Label 'Not enough inventory for item %1. Required: %2, Available: %3';
                 begin
                     if (Rec.Status = Enum::Status::Confirmed) then 
                     begin
@@ -87,7 +91,6 @@ page 50304 RequestList
                         Update(true);
                         Message('Request %1 has been confirmed and inventory updated.', Rec."No.");
                     end;
-
 
                 end;
             }
