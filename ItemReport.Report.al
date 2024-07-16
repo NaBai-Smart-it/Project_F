@@ -1,61 +1,51 @@
-report 50311 MyReport
+report 50300 ItemReport
 {
-    UsageCategory = ReportsAndAnalysis;
     ApplicationArea = All;
-    //DefaultRenderingLayout = LayoutName;
-    
+    Caption = 'Item Report';
+    UsageCategory = ReportsAndAnalysis;
+    WordLayout = 'Item Report.docx';
+    DefaultLayout = Word;
+
     dataset
     {
-        dataitem(DataItemName; SourceTableName)
+        dataitem(MyItem; MyItem)
         {
-            column(ColumnName; SourceFieldName)
+            column(No; "No.")
             {
-                
+            }
+            column(Name; Name)
+            {
+            }
+            column(Quantity; Quantity)
+            {
+            }
+            column(Price; Price)
+            {
+            }
+            column(UnitOfMeasurement; UnitOfMeasurement)
+            {
+            }
+            column(StorageLocation; StorageLocation)
+            {
             }
         }
     }
-    
     requestpage
     {
-        AboutTitle = 'Teaching tip title';
-        AboutText = 'Teaching tip content';
         layout
         {
             area(Content)
             {
                 group(GroupName)
                 {
-                    field(Name; SourceExpression)
-                    {
-                        ApplicationArea = All;
-                        
-                    }
                 }
             }
         }
-    
         actions
         {
-            area(processing)
+            area(Processing)
             {
-                action(LayoutName)
-                {
-                    ApplicationArea = All;
-                    
-                }
             }
         }
     }
-    
-    rendering
-    {
-        layout(LayoutName)
-        {
-            Type = Excel;
-            LayoutFile = 'mySpreadsheet.xlsx';
-        }
-    }
-    
-    var
-        myInt: Integer;
 }

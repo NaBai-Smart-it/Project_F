@@ -1,48 +1,37 @@
 page 50303 MainPage
 {
-    PageType = Card;
+    PageType = RoleCenter;
     ApplicationArea = All;
     Caption = 'Main Page';
     UsageCategory = Lists;
 
+
     layout
     {
-        area(Content)
+        area(RoleCenter)
         {
-            group(GroupName)
-            {
-            }
         }
     }
 
     actions
     {
-        area(Navigation)
+        area(Creation)
         {
-            action(OpenItemList)
+            group(MyGroup)
             {
-                Caption = 'Open Item List';
-                ApplicationArea = All;
+                
+                action(OpenItemList)
+                {
+                    Caption = 'Open Item List';
+                    RunObject = Page ItemList;
+                }
 
-                trigger OnAction()
-                begin
-                    Page.RunModal(Page::ItemList);
-                end;
-            }
-
-            action(OpenRequestList)
-            {
-                Caption = 'Open Request List';
-                ApplicationArea = All;
-
-                trigger OnAction()
-                begin
-                    Page.RunModal(Page::RequestList);
-                end;
+                action(OpenRequestList)
+                {
+                    Caption = 'Open Request List';
+                    RunObject = Page RequestList;
+                }
             }
         }
     }
-
-    var
-        myInt: Integer;
 }
