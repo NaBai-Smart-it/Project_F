@@ -9,7 +9,7 @@
             "server": "http://locapps",
             "serverInstance": "BC",
             "authentication": "UserPassword",
-            "startupObjectId": 50303,
+            "startupObjectId": 16,
             "startupObjectType": "Page",
             "schemaUpdateMode": "ForceSync",
             "breakOnError": "All",

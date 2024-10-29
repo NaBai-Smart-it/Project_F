@@ -25,6 +25,7 @@ page 50303 MainPage
                     Caption = 'Open Item List';
                     RunObject = Page ItemList;
                 }
+                
 
                 action(OpenRequestList)
                 {

@@ -7,7 +7,7 @@ codeunit 50301 RequestRowManegement
         begin
             Error('Quantity must be grater then 0');
         end;
-    end;
+      end;
 
     procedure GetNextLineNo(RequestID: Integer): Integer
     var

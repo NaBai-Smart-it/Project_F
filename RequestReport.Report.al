@@ -1,10 +1,10 @@
-report 50302 RequestReport
+report 50305 RequestReport
 {
     ApplicationArea = All;
     Caption = 'RequestReport';
     UsageCategory = ReportsAndAnalysis;
-    RDLCLayout = 'Request Report.RDL';
-    DefaultLayout = RDLC;
+    WordLayout = 'Request Report.docx';
+    DefaultLayout = WORD;
 
     dataset
     {
