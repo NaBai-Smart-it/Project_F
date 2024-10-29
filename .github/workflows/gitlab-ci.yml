@@ -11,9 +11,9 @@ jobs:
   build-job:
    runs-on: ubuntu-latest
    steps:
-    stage: build
-    
-    run: echo "Hello, $GITLAB_USER_LOGIN!"
+    - uses: actions/checkout@v4
+    - name: Nameof the step
+      run: echo "Hello, $GITLAB_USER_LOGIN!"
 
   # test-job1:
   #   stage: test
